@@ -1,6 +1,7 @@
 import argparse
 
 from jisho_scraper.anki_exporter import output_anki_connect
+from jisho_scraper.cli_exporter import output_cli
 from jisho_scraper.csv_exporter import output_csv, output_tsv
 from jisho_scraper.jisho_client import search_word
 from jisho_scraper.output_prepare import word_list_to_output
@@ -12,6 +13,9 @@ def main():
                     'output them in a convenient format.')
     parser.add_argument(
         'search_keyword', type=str, help='keyword to look for')
+    parser.add_argument(
+        '--number', metavar='NUMBER', type=int, default=1,
+        help='Max number of the results to output')
     parser.add_argument(
         '--csv', metavar='PATH', type=str,
         help='path to save the CSV (comma-separated values) file at')
@@ -30,6 +34,9 @@ def run(args):
     results = search_word(args.search_keyword)
     out_words = word_list_to_output(results)
 
+    if args.number:
+        out_words = out_words[:args.number]
+
     if args.csv:
         output_csv(out_words, args.csv)
 
@@ -38,6 +45,8 @@ def run(args):
 
     if args.anki:
         output_anki_connect(out_words, args.anki)
+
+    output_cli(out_words)
 
 
 if __name__ == '__main__':
