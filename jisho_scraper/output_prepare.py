@@ -20,7 +20,7 @@ def __process_word_data(word_data: WordData,
     kanji = word_data.japanese[0].word
     kana = word_data.japanese[0].reading
     same_reading = [x.japanese[0].word for x in word_list
-                    if x != word_data and x.japanese[0].reading == kana]
+                    if x != word_data and x.japanese[0].reading == kana and x.japanese[0].word is not None]
     if same_reading:
         kana = f'{kana} (not: {", ".join(same_reading)})'
 
