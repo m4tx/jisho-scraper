@@ -11,8 +11,9 @@ with open(path.join(base_path, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='jisho_scraper',
-    version='1.0.0',
-    description='Jisho scraper capable of outputting search results to CSV or Anki',
+    version='1.1.0',
+    description='Jisho scraper capable of outputting search results '
+                'to CSV or Anki',
     long_description=long_description,
     url='https://github.com/m4tx/jisho-scraper',
 
@@ -33,6 +34,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
 
     keywords='jisho anki hiragana katakana kanji',
